@@ -10,7 +10,6 @@
  * published by the Free Software Foundation.
  *
  */
-
 #define pr_fmt(fmt) "ledtrig_thermal: " fmt
 
 #include <linux/kernel.h>
@@ -22,8 +21,6 @@
 #include <linux/leds.h>
 #include <linux/msm_thermal.h>
 #include "leds.h"
-
-#define DEBUG 0
 
 #define MAX_BR 255
 #define MIN_BR 0
