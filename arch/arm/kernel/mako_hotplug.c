@@ -78,7 +78,7 @@ static void scale_interactive_tunables(unsigned int above_hispeed_delay,
     scale_min_sample_time(min_sample_time);
 }
 
-static void first_level_work_check(unsigned long now)
+static void __cpuinit first_level_work_check(unsigned long now)
 {
     unsigned int cpu = nr_cpu_ids;
     struct cpufreq_policy policy;
@@ -115,7 +115,7 @@ static void first_level_work_check(unsigned long now)
     stats.time_stamp = now;
 }
 
-static void second_level_work_check(unsigned long now)
+static void __cpuinit second_level_work_check(unsigned long now)
 {
     unsigned int cpu = nr_cpu_ids;
     struct cpufreq_policy policy;
@@ -186,7 +186,7 @@ static void third_level_work_check(unsigned int load, unsigned long now)
     stats.time_stamp = now;
 }
 
-static void decide_hotplug_func(struct work_struct *work)
+static void __cpuinit decide_hotplug_func(struct work_struct *work)
 {
     unsigned long now;
     unsigned int i, j, first_level, second_level, load = 0;
@@ -287,7 +287,7 @@ static void mako_hotplug_early_suspend(struct early_suspend *handler)
             0, stats.suspend_frequency/1000);
 }
 
-static void mako_hotplug_late_resume(struct early_suspend *handler)
+static void __cpuinit mako_hotplug_late_resume(struct early_suspend *handler)
 {    
     /* online all cores when the screen goes online */
     first_level_work_check(ktime_to_ms(ktime_get()));
