@@ -350,8 +350,8 @@ CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 CFLAGS_MODULE   =
 AFLAGS_MODULE   =
 LDFLAGS_MODULE  =
-CFLAGS_KERNEL	= -mcpu=cortex-a15 -mfpu=neon -ftree-vectorize -mvectorize-with-neon-quad
-AFLAGS_KERNEL	= -mcpu=cortex-a15 -mfpu=neon -ftree-vectorize -mvectorize-with-neon-quad
+CFLAGS_KERNEL	= -mcpu=cortex-a15 -mfpu=neon-vfpv4 -ftree-vectorize -mvectorize-with-neon-quad -ftree-partial-pre
+AFLAGS_KERNEL	= -mcpu=cortex-a15 -mfpu=neon-vfpv4 -ftree-vectorize -mvectorize-with-neon-quad -ftree-partial-pre
 CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage
 
 
@@ -367,8 +367,10 @@ KBUILD_CPPFLAGS := -D__KERNEL__
 KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
-		   -Wno-format-security \
-		   -fno-delete-null-pointer-checks
+		   -Wno-format-security -ftree-partial-pre \
+		   -mcpu=cortex-a15 -mtune=cortex-a15 -mfpu=neon-vfpv4 \
+                   -funsafe-math-optimizations -ftree-vectorize \
+		   -mvectorize-with-neon-quad -O2 -ftree-partial-pre
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS   := -D__ASSEMBLY__
