@@ -1794,8 +1794,7 @@ config OABI_COMPAT
 	  new (ARM EABI) one. It also provides a compatibility layer to
 	  intercept syscalls that have structure arguments which layout
 	  in memory differs between the legacy ABI and the new ARM EABI
-	  (only for non "thumb" binari
-es). This option adds a tiny
+	  (only for non "thumb" binaries). This option adds a tiny
 	  overhead to all syscalls and produces a slightly larger kernel.
 	  If you know you'll be using only pure EABI user space then you
 	  can say N here. If this option is not selected and you attempt

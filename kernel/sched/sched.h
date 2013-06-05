@@ -80,7 +80,7 @@ extern struct mutex sched_domains_mutex;
 struct cfs_rq;
 struct rt_rq;
 
-extern struct list_head task_groups;
+static LIST_HEAD(task_groups);
 
 struct cfs_bandwidth {
 #ifdef CONFIG_CFS_BANDWIDTH
@@ -551,6 +551,11 @@ DECLARE_PER_CPU(int, sd_llc_id);
 static inline struct task_group *task_group(struct task_struct *p)
 {
 	return p->sched_task_group;
+}
+
+static inline bool task_notify_on_migrate(struct task_struct *p)
+{
+	return task_group(p)->notify_on_migrate;
 }
 
 /* Change a task's cfs_rq and parent entity if it moves across CPUs/groups */
